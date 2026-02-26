@@ -13,8 +13,8 @@ const Header = ({ currentPage, setCurrentPage, searchTerm, setSearchTerm }) => {
               onClick={() => setCurrentPage('home')}
             >
               <h1 className="text-2xl font-black tracking-tighter">
-                <span className="text-white">DREADFUL</span>
-                <span className="text-[#22c55e]">TOMATOES</span>
+                <span className="text-white">MOVIEW</span>
+                <span className="text-[#22c55e]">PELICULAS Y SERIES</span>
               </h1>
             </div>
 

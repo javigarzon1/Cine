@@ -185,14 +185,9 @@ const HomePage = ({ setCurrentPage }) => {
           <div className="border-t border-gray-900 pt-10 mt-12">
             <div className="text-center">
               <h2 className="text-white text-xl font-bold mb-4">
-                Dreadful Tomatoes - Descargar Películas y Series Torrent HD Gratis
+                MOVIEW - Películas y Series.
               </h2>
-              <p className="text-gray-500 text-sm leading-relaxed max-w-5xl mx-auto">
-                Dreadful Tomatoes #1 en Torrent ofrece las mejores <span className="text-white">Películas y Series Torrent Gratis</span> con 
-                audio <span className="text-white">Castellano 🇪🇸 Español Latino 🇲🇽</span> y
-                <span className="text-white"> Subtitulado (VOSE) 🇺🇸</span> para ver online y descargar en calidad{' '}
-                <span className="text-[#22c55e]">1080p y 720p</span> sin esperas y con la mejor velocidad ⚡
-              </p>
+              
             </div>
           </div>
 

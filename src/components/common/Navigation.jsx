@@ -17,7 +17,7 @@ const Navigation = ({ currentPage, setCurrentPage }) => {
           </div>
           <div>
             <h1 className="text-2xl font-bold text-white group-hover:text-red-400 transition-colors">
-              Dreadful Tomatoes
+              MOVIEW <span className="text-[#22c55e]">PELICULAS Y SERIES</span>
             </h1>
             <p className="text-xs text-gray-400">Tu guía de entretenimiento</p>
           </div>
