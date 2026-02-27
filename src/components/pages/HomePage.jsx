@@ -103,30 +103,52 @@ const Carousel = ({ title, items, onSelect }) => {
   };
 
   return (
-  <div className="min-h-screen bg-black text-white">
+    <div className="px-10 relative group">
+      <h2 className="text-2xl font-bold mb-6">{title}</h2>
 
-    {/* HERO GRANDE VISUAL */}
-    <div className="relative h-screen">
-      <img
-        src="https://upload.wikimedia.org/wikipedia/en/5/52/Dune_Part_Two_poster.jpeg"
-        className="absolute inset-0 w-full h-full object-cover"
-      />
-      <div className="absolute inset-0 bg-black/70" />
-      <div className="relative z-10 flex flex-col justify-center h-full px-20">
-        <h1 className="text-7xl font-extrabold mb-6">
-          MOVIEW
-        </h1>
-        <p className="text-xl text-gray-300 max-w-xl mb-8">
-          La nueva experiencia de películas y series.
-        </p>
-        <button className="bg-[#22c55e] text-black px-8 py-4 rounded-xl font-bold w-fit">
-          Ver ahora
-        </button>
+      {/* Botones laterales */}
+      <button
+        onClick={() => scroll("left")}
+        className="absolute left-2 top-1/2 -translate-y-1/2 z-20 opacity-0 group-hover:opacity-100 transition bg-black/60 p-2 rounded-full"
+      >
+        <ChevronLeft />
+      </button>
+
+      <button
+        onClick={() => scroll("right")}
+        className="absolute right-2 top-1/2 -translate-y-1/2 z-20 opacity-0 group-hover:opacity-100 transition bg-black/60 p-2 rounded-full"
+      >
+        <ChevronRight />
+      </button>
+
+      {/* Scroll horizontal */}
+      <div
+        ref={scrollRef}
+        className="flex gap-6 overflow-x-auto scrollbar-hide scroll-smooth"
+      >
+        {items.map((item) => (
+          <div
+            key={item.id}
+            onClick={() => onSelect(item)}
+            className="min-w-[220px] cursor-pointer transform transition hover:scale-110"
+          >
+            <div className="relative h-[330px] rounded-lg overflow-hidden">
+              <img
+                src={item.image}
+                alt={item.title}
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-black/0 hover:bg-black/60 transition flex items-center justify-center">
+                <Play className="opacity-0 hover:opacity-100 transition" />
+              </div>
+            </div>
+            <h3 className="mt-3 text-sm font-semibold">{item.title}</h3>
+            <p className="text-gray-500 text-xs">{item.year}</p>
+          </div>
+        ))}
       </div>
     </div>
-
-  </div>
-);
+  );
 };
 
 /* ===================== MODAL ===================== */
