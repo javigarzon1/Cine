@@ -1,39 +1,32 @@
-import React, { useState } from 'react';
-import Header from './components/common/Header';
-import HomePage from './components/pages/HomePage';
-import TvShowsPage from './components/pages/TvShowsPage';
-import MoviesPage from './components/pages/MoviesPage';
+import { Toaster } from "@/components/ui/toaster";
+import { Toaster as Sonner } from "@/components/ui/sonner";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Header from "./components/Header";
+import HomePage from "./pages/HomePage";
+import MoviesPage from "./pages/MoviesPage";
+import TvShowsPage from "./pages/TvShowsPage";
+import NotFound from "./pages/NotFound";
 
-const App = () => {
-  const [currentPage, setCurrentPage] = useState('home');
-  const [globalSearchTerm, setGlobalSearchTerm] = useState('');
+const queryClient = new QueryClient();
 
-  const renderCurrentPage = () => {
-    switch (currentPage) {
-      case 'home':
-        return <HomePage setCurrentPage={setCurrentPage} />;
-      case 'tv-shows':
-        return <TvShowsPage globalSearchTerm={globalSearchTerm} />;
-      case 'movies':
-        return <MoviesPage globalSearchTerm={globalSearchTerm} />;
-      default:
-        return <HomePage setCurrentPage={setCurrentPage} />;
-    }
-  };
-
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-950 via-gray-900 to-black">
-      <Header 
-        currentPage={currentPage} 
-        setCurrentPage={setCurrentPage}
-        searchTerm={globalSearchTerm}
-        setSearchTerm={setGlobalSearchTerm}
-      />
-      <main className="w-full">
-        {renderCurrentPage()}
-      </main>
-    </div>
-  );
-};
+const App = () => (
+  <QueryClientProvider client={queryClient}>
+    <TooltipProvider>
+      <Toaster />
+      <Sonner />
+      <BrowserRouter>
+        <Header />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/movies" element={<MoviesPage />} />
+          <Route path="/tv-shows" element={<TvShowsPage />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </BrowserRouter>
+    </TooltipProvider>
+  </QueryClientProvider>
+);
 
 export default App;

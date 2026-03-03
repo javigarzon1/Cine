@@ -1,56 +1,54 @@
-import React from 'react';
-import { Star } from 'lucide-react';
-
-const MediaCard = ({ item, type }) => {
+import { Star, Play } from "lucide-react";
+import { Badge } from "./components/ui/badge";
+const MediaCard = ({ item, onClick }) => {
   return (
-    <div className="group cursor-pointer w-full">
-      <div className="relative overflow-hidden bg-gradient-to-br from-slate-800 to-slate-900 rounded-lg">
-        <div className="relative h-72 w-full flex items-center justify-center">
-          <img
-            src={item.image}
-            alt={item.title}
-            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-            onError={(e) => {
-              e.target.src = 'https://images.pexels.com/photos/33129/movie-popcorn-entertainment.jpg?w=500&h=700&fit=crop';
-            }}
-          />
-
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-
-          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
-            <div className="bg-blue-500 rounded-full p-3 transform scale-0 group-hover:scale-100 transition-transform duration-300">
-              <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z" />
-              </svg>
-            </div>
-          </div>
-
-          <div className="absolute top-3 right-3 z-10">
-            <span className="px-3 py-1 bg-blue-500 text-white text-xs font-bold uppercase rounded-full">
-              {type === 'movie' ? 'Película' : 'Serie'}
-            </span>
-          </div>
-
-          {item.rating && (
-            <div className="absolute top-3 left-3 flex items-center gap-1 bg-black/50 backdrop-blur-sm px-2.5 py-1.5 rounded-lg">
-              <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
-              <span className="text-xs font-semibold text-white">{item.rating}</span>
-            </div>
+    <div
+      onClick={() => onClick?.(item)}
+      className="group relative flex-shrink-0 w-44 md:w-52 cursor-pointer"
+    >
+      {/* Poster */}
+      <div className="relative overflow-hidden rounded-xl aspect-[2/3] bg-secondary">
+        <img
+          src={item.poster}
+          alt={item.title}
+          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+          loading="lazy"
+        />
+        {/* Overlay on hover */}
+        <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-3">
+          <button className="mb-2 self-center w-12 h-12 rounded-full bg-primary flex items-center justify-center shadow-lg shadow-primary/30 transition-transform hover:scale-110">
+            <Play className="h-5 w-5 text-primary-foreground ml-0.5" fill="currentColor" />
+          </button>
+          <p className="text-xs text-foreground/80 line-clamp-2">{item.description?.slice(0, 80)}...</p>
+        </div>
+        {/* Badges */}
+        <div className="absolute top-2 left-2 flex gap-1.5">
+          {item.featured && (
+            <Badge className="bg-primary text-primary-foreground text-[10px] px-1.5 py-0.5 border-0">
+              ⭐ Destacado
+            </Badge>
           )}
         </div>
-
-        <div className="p-4">
-          <h3 className="text-white text-sm font-semibold line-clamp-2 mb-2 leading-tight group-hover:text-blue-400 transition-colors">
-            {item.title}
-          </h3>
-          <div className="flex justify-between items-center text-xs">
-            <span className="text-gray-400">{item.year}</span>
-            {item.genre && <span className="text-cyan-400">{item.genre}</span>}
+        <div className="absolute top-2 right-2">
+          <Badge variant="secondary" className="text-[10px] px-1.5 py-0.5 bg-background/70 backdrop-blur-sm text-foreground border-0">
+            {item.type === "movie" ? "Película" : "Serie"}
+          </Badge>
+        </div>
+      </div>
+      {/* Info */}
+      <div className="mt-2 px-1">
+        <h3 className="text-sm font-semibold text-foreground truncate group-hover:text-primary transition-colors">
+          {item.title}
+        </h3>
+        <div className="flex items-center justify-between mt-1">
+          <span className="text-xs text-muted-foreground">{item.year}</span>
+          <div className="flex items-center gap-1">
+            <Star className="h-3 w-3 text-primary" fill="currentColor" />
+            <span className="text-xs font-medium text-foreground">{item.rating}</span>
           </div>
         </div>
       </div>
     </div>
   );
 };
-
 export default MediaCard;

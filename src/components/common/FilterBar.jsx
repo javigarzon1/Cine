@@ -1,46 +1,54 @@
-import React from 'react';
-import { Search, Calendar } from 'lucide-react';
-
-const FilterBar = ({ searchTerm, setSearchTerm, selectedYear, setSelectedYear, years }) => {
+import { Search } from "lucide-react";
+import { Input } from "./components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "./components/ui/select";
+const FilterBar = ({ search, onSearchChange, year, onYearChange, sort, onSortChange, years, resultCount }) => {
   return (
-    <div className="bg-gray-800/50 backdrop-blur-xl border border-gray-700/50 p-6 rounded-2xl shadow-xl mb-8">
-      <div className="flex flex-col md:flex-row gap-4">
-        <div className="flex-1">
-          <div className="relative group">
-            <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5 group-hover:text-red-400 transition-colors" />
-            <input
-              type="text"
-              placeholder="Buscar por título..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-12 pr-4 py-3.5 bg-gray-700/50 border border-gray-600/50 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all hover:bg-gray-700/70"
-            />
-          </div>
+    <div className="flex flex-col md:flex-row gap-3 items-start md:items-center justify-between mb-6">
+      <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
+        {/* Search */}
+        <div className="relative w-full sm:w-64">
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+          <Input
+            placeholder="Buscar por título..."
+            value={search}
+            onChange={(e) => onSearchChange(e.target.value)}
+            className="pl-9 bg-secondary border-border"
+          />
         </div>
-        
-        <div className="md:w-56">
-          <div className="relative group">
-            <Calendar className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5 group-hover:text-red-400 transition-colors pointer-events-none z-10" />
-            <select
-              value={selectedYear}
-              onChange={(e) => setSelectedYear(e.target.value)}
-              className="w-full pl-12 pr-10 py-3.5 bg-gray-700/50 border border-gray-600/50 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent appearance-none cursor-pointer transition-all hover:bg-gray-700/70"
-            >
-              <option value="">Todos los años</option>
-              {years.map(year => (
-                <option key={year} value={year}>{year}</option>
-              ))}
-            </select>
-            <div className="absolute right-4 top-1/2 transform -translate-y-1/2 pointer-events-none">
-              <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-              </svg>
-            </div>
-          </div>
-        </div>
+        {/* Year filter */}
+        <Select value={year} onValueChange={onYearChange}>
+          <SelectTrigger className="w-full sm:w-32 bg-secondary border-border">
+            <SelectValue placeholder="Año" />
+          </SelectTrigger>
+          <SelectContent className="bg-card border-border">
+            <SelectItem value="all">Todos</SelectItem>
+            {years.map((y) => (
+              <SelectItem key={y} value={String(y)}>{y}</SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+        {/* Sort */}
+        <Select value={sort} onValueChange={onSortChange}>
+          <SelectTrigger className="w-full sm:w-40 bg-secondary border-border">
+            <SelectValue placeholder="Ordenar" />
+          </SelectTrigger>
+          <SelectContent className="bg-card border-border">
+            <SelectItem value="rating">Mayor rating</SelectItem>
+            <SelectItem value="year">Más reciente</SelectItem>
+            <SelectItem value="title">A-Z</SelectItem>
+          </SelectContent>
+        </Select>
       </div>
+      <span className="text-sm text-muted-foreground whitespace-nowrap">
+        {resultCount} resultado{resultCount !== 1 ? "s" : ""}
+      </span>
     </div>
   );
 };
-
 export default FilterBar;
