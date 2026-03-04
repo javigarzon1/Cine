@@ -1,8 +1,9 @@
 import { useState, useMemo } from "react";
-import { getMovies, getYears } from "@/services/api";
-import MediaCard from "@/components/MediaCard";
-import MediaDetailModal from "@/components/MediaDetailModal";
-import FilterBar from "@/components/FilterBar";
+import { getMovies, getYears } from "../../services/api";
+import MediaCard from "../common/MediaCard";
+import MediaDetailModal from "../common/MediaDetailModal";
+import FilterBar from "../common/FilterBar";
+
 const MoviesPage = () => {
   const [selectedItem, setSelectedItem] = useState(null);
   const [search, setSearch] = useState("");

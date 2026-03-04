@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Play, Info } from "lucide-react";
-import { Button, Input } from "./components/ui/ui";
-import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "./components/ui/dialog";
-import MediaCarousel from "./components/MediaCarousel";
-import MediaDetailModal from "./components/MediaDetailModal";
+import { Button, Input } from "../ui/ui";
+import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "../ui/dialog";
+import MediaCarousel from "../common/MediaCarousel";
+import MediaDetailModal from "../common/MediaDetailModal";
 import { getTrending, getMovies, getTvShows, getFeatured } from "@/services/api";
 
 

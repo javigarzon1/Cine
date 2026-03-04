@@ -2,11 +2,11 @@ import { Toaster, SonnerToaster } from "./components/ui/toast";
 import { TooltipProvider } from "./components/ui/ui";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Header from "./components/Header";
-import HomePage from "./pages/HomePage";
-import MoviesPage from "./pages/MoviesPage";
-import TvShowsPage from "./pages/TvShowsPage";
-import NotFound from "./pages/NotFound";
+import Header from "./components/common/Header";
+import HomePage from "./components/pages/HomePage";
+import MoviesPage from "./components/pages/MoviesPage";
+import TvShowsPage from "./components/pages/TvShowsPage";
+import NotFound from "./components/pages/NotFound";
 
 const queryClient = new QueryClient();
 

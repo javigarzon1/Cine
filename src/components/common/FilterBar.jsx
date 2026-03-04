@@ -1,6 +1,6 @@
 import { Search } from "lucide-react";
-import { Input } from "@/components/ui/ui";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Input } from "../ui/ui";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/select";
 
 const FilterBar = ({ search, onSearchChange, year, onYearChange, sort, onSortChange, years, resultCount }) => {
   return (

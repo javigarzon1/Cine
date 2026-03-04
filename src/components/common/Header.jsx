@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Search, Menu, X, Film } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet";
-import { searchMedia } from "@/services/api";
+import { Button } from "../ui/ui";
+import { Input } from "../ui/ui";
+import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "../ui/sheet";
+import { searchMedia } from "../../services/api";
 
 const navLinks = [
   { to: "/", label: "Inicio" },
