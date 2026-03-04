@@ -1,4 +1,3 @@
-import { Toaster } from "./components/ui/toaster";
 import { Toaster, SonnerToaster } from "./components/ui/toast";
 import { TooltipProvider } from "./components/ui/ui";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
