@@ -1,5 +1,6 @@
 import { Star, Play } from "lucide-react";
-import { Badge } from "../ui/ui";
+import { Badge } from "@/components/ui/ui";
+
 const MediaCard = ({ item, onClick }) => {
   return (
     <div
@@ -21,6 +22,7 @@ const MediaCard = ({ item, onClick }) => {
           </button>
           <p className="text-xs text-foreground/80 line-clamp-2">{item.description?.slice(0, 80)}...</p>
         </div>
+
         {/* Badges */}
         <div className="absolute top-2 left-2 flex gap-1.5">
           {item.featured && (
@@ -29,12 +31,18 @@ const MediaCard = ({ item, onClick }) => {
             </Badge>
           )}
         </div>
-        <div className="absolute top-2 right-2">
+        <div className="absolute top-2 right-2 flex flex-col gap-1 items-end">
           <Badge variant="secondary" className="text-[10px] px-1.5 py-0.5 bg-background/70 backdrop-blur-sm text-foreground border-0">
             {item.type === "movie" ? "Película" : "Serie"}
           </Badge>
+          {item.platform && (
+            <Badge variant="secondary" className="text-[10px] px-1.5 py-0.5 bg-primary/80 backdrop-blur-sm text-primary-foreground border-0">
+              {item.platform}
+            </Badge>
+          )}
         </div>
       </div>
+
       {/* Info */}
       <div className="mt-2 px-1">
         <h3 className="text-sm font-semibold text-foreground truncate group-hover:text-primary transition-colors">
@@ -51,4 +59,5 @@ const MediaCard = ({ item, onClick }) => {
     </div>
   );
 };
+
 export default MediaCard;
