@@ -8,7 +8,7 @@ const movies = [
     type: "movie",
     category: "Terror",
     rating: 7.2,
-    featured: true,
+    featured: false,
     genres: ["Terror", "Thriller"],
     description: "Una familia se muda a una casa aislada en el campo donde un silbido sobrenatural aterroriza a sus habitantes cada noche.",
     poster: "https://image.tmdb.org/t/p/w500/84vAcFwxoObBuMWANWQXCg0Umg8.jpg",
