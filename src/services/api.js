@@ -1058,7 +1058,7 @@ export const getYears = () => {
     backdrop: "https://image.tmdb.org/t/p/original/mIDMvrgKj8JjSTaKJMf2s7NECdM.jpg",
     duration: "1h 42min",
     director: "Kirill Sokolov"
-  },
+  
   {
     id: 4,
     title: "Caminando con el diablo",
