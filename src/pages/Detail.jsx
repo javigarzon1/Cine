@@ -7,8 +7,8 @@ import {
   getSimilarMovies, getSimilarTV,
   getMovieVideos, getTVVideos,
   getBackdropUrl, getImageUrl,
-} from "../lib/tmdb";
-import MediaCarousel from "../components/MediaCarousel";
+} from "@/lib/tmdb";
+import MediaCarousel from "@/components/MediaCarousel";
 
 const Detail = ({ type }) => {
   const { id } = useParams();
@@ -104,16 +104,26 @@ const Detail = ({ type }) => {
             <h2 className="text-2xl font-bold mb-4">🎬 Trailers</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {trailers.slice(0, 4).map(v => (
-                <div key={v.id} className="aspect-video rounded-xl overflow-hidden bg-secondary">
-                  <iframe
-                    src={`https://www.youtube.com/embed/${v.key}`}
-                    title={v.name}
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                    className="w-full h-full"
+                <a
+                  key={v.id}
+                  href={`https://www.youtube.com/watch?v=${v.key}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group relative aspect-video rounded-xl overflow-hidden bg-secondary block"
+                >
+                  <img
+                    src={`https://img.youtube.com/vi/${v.key}/hqdefault.jpg`}
+                    alt={v.name}
+                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                     loading="lazy"
                   />
-                </div>
+                  <div className="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/20 transition-colors">
+                    <div className="w-16 h-16 rounded-full bg-primary/90 flex items-center justify-center">
+                      <svg className="w-7 h-7 text-primary-foreground ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    </div>
+                  </div>
+                  <p className="absolute bottom-3 left-3 right-3 text-sm font-medium text-white truncate">{v.name}</p>
+                </a>
               ))}
             </div>
           </div>
